@@ -31,37 +31,70 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Drink Some Water"
-            android:id="@+id/button" />
+            android:background="#51c696"
+            android:id="@+id/button"
+            android:clickable="true"
+            android:onClick="waterPlease"
+            android:textColor="#036915" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Eat Some Food"
-            android:id="@+id/button2"/>
+            android:background="#51c696"
+            android:id="@+id/button2"
+            android:onClick="foodPlease"
+            android:textColor="#036915" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/ll1"
+        android:layout_marginTop="10dp"
         android:id="@+id/ll2"             >
 
 
         <ImageView
             android:layout_width="84dp"
             android:layout_height="76dp"
-
             android:id="@+id/imageView2"
-            android:src="@drawable/happy" />
+            android:src="@drawable/bottle" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="76dp"
+            android:layout_width="fill_parent"
+            android:minHeight="76dp"
+            android:layout_height="wrap_content"
             android:id="@+id/progressBar" />
 
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ll2"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll3"             >
+
+
+        <ImageView
+            android:layout_width="84dp"
+            android:layout_height="76dp"
+            android:id="@+id/imageView3"
+            android:src="@drawable/hotdog" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:minHeight="76dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar2"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
