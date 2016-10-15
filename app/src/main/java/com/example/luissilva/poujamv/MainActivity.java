@@ -1,23 +1,32 @@
 package com.example.luissilva.poujamv;
 
+import android.app.ActivityManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements ServiceConnection{
 
-    private ProgressBar drinkBar;
-    private ProgressBar foodBar;
+    public static ProgressBar drinkBar;
+    public static ProgressBar foodBar;
     private ImageView img;
     private Counter counter;
+    final ServiceConnection connection = this;
 
 
     @Override
@@ -28,49 +37,69 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         drinkBar = (ProgressBar) findViewById(R.id.progressBar);
         foodBar = (ProgressBar) findViewById(R.id.progressBar2);
         img = (ImageView) findViewById(R.id.imageView);
-        int a = drinkBar.getProgress();
-        int b = foodBar.getProgress();
+        drinkBar.setProgress(70);
+        foodBar.setProgress(70);
         drinkBar.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
         foodBar.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         img.setImageDrawable(getDrawable(R.drawable.trigerred_esponja));
 
-    /*if()
-    {
-     startService(MyService);
-    }*/
+
+
+        if(!IsMyServiceRunning(MyService.class))
+        {
+            startService(new Intent(this, MyService.class));
+            Log.e("Service","has been started");
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-
-        //bindService();
+        if(bindService(new Intent(MainActivity.this, MyService.class), connection, Context.BIND_AUTO_CREATE))
+            Toast.makeText(MainActivity.this, "Binded", Toast.LENGTH_SHORT).show();;
     }
 
     public void waterPlease(View v)
     {
-        drinkBar.setProgress(drinkBar.getProgress() + 25);
-       /* int sum = drinkBar.getProgress()+ foodBar.getProgress();
-        switch ()
+        drinkBar.setProgress(drinkBar.getProgress() + 10);
+        while(true)
         {
-            case sum > 0:
-                img.setImageDrawable(getDrawable(R.drawable.trigerred_esponja));
-                break;
-            case 25:
-                img.setImageDrawable(getDrawable(R.drawable.ok_esponja));
-                break;
-            case 50:
-                img.setImageDrawable(getDrawable(R.drawable.cuttie_esponja));
-                break;
-            case 75:
-                img.setImageDrawable(getDrawable(R.drawable.happy_esponja));
-                break;
-        }*/
+            if(MyService.DrinkVerifier())
+            {
+                NotificationGenerator("Drink");
+            }
+            Log.e("Is","verifing drink");
+        }
     }
     public void foodPlease(View v)
     {
-        foodBar.setProgress(foodBar.getProgress()+25);
+        foodBar.setProgress(foodBar.getProgress()+10);
+        while(true)
+        {
+            if(MyService.FoodVerifier())
+            {
+                NotificationGenerator("Food");
+            }
+            Log.e("Is","verifing food");
+        }
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        UnbindConnection();
+    }
+
+    private void UnbindConnection()
+    {
+        if(counter != null)
+        {
+            Log.d("BIND SERVICE SAMPLE", "STOP BIND SERVICE");
+            counter = null;
+            unbindService(connection);
+        } else Log.d("BIND SERVICE SAMPLE", "THE SERVICE ISN'T CONNECTED");
     }
 
     @Override
@@ -80,8 +109,73 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     }
 
+
     @Override
     public void onServiceDisconnected(ComponentName name) {
-
+        Log.d("BIND SERVICE SAMPLE", "SERVICE DISCONNECTED");
+        counter = null;
     }
+    private boolean IsMyServiceRunning(Class<MyService> myServiceClass)
+    {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (MyService.class.getName().equals(service.service.getClassName())) {
+                Log.d("If", "true");
+                return true;
+            }
+            Log.d("If", "false");
+        } return false ;
+    }
+
+
+    public void NotificationGenerator(String bar)
+    {
+        switch (bar)
+        {
+            case "Drink":
+                NotificationCompat.Builder drinkNot = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.icone_esponja)
+                        .setContentTitle("Tenho sede")
+                        .setContentText("Me dê água, por favor!");
+
+                Intent resultIntent = new Intent(this, MainActivity.class);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+                stackBuilder.addParentStack(MainActivity.class);
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                drinkNot.setContentIntent(resultPendingIntent);
+                NotificationManager mNotificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+                mNotificationManager.notify(0,drinkNot.build());
+
+                break;
+            case "Food":
+                NotificationCompat.Builder foodNot = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.icone_esponja)
+                        .setContentTitle("Tenho fome")
+                        .setContentText("Me dê comida, por favor!");
+                Intent resultIntent2 = new Intent(this, MainActivity.class);
+                TaskStackBuilder stackBuilder2 = TaskStackBuilder.create(this);
+                stackBuilder2.addParentStack(MainActivity.class);
+                stackBuilder2.addNextIntent(resultIntent2);
+                PendingIntent resultPendingIntent2 =
+                        stackBuilder2.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                foodNot.setContentIntent(resultPendingIntent2);
+                NotificationManager fNotificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+                fNotificationManager.notify(0,foodNot.build());
+                break;
+        }
+    }
+
+
 }

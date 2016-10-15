@@ -22,19 +22,26 @@ public class MyService extends Service implements Runnable, Counter{
     @Override
     public int Count() { return count; }
 
+    @Override
     public void onCreate()
     {
         super.onCreate();
+
+        Log.e("Count", count+"");
+
+       // if(count ==  && count <= 0)
+        //{}
 
         Log.d("SERVICE SAMPLE", "SERVICE SAMPLE onCreate()");
         active = true;
         new Thread(this).start();
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         Log.d("SERVICE SAMPLE", "SERVICE SAMPLE onStart()");
-        Toast.makeText(this,"BobEsponjamv está vivo e quer interagir",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Bob Esponja está vivo e quer interagir",Toast.LENGTH_LONG).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -57,10 +64,14 @@ public class MyService extends Service implements Runnable, Counter{
         {
             Log.d("SERVICE SAMPLE", "EXECUTING SERVICE: " + count);
             count++;
+            MainActivity.foodBar.setProgress(MainActivity.foodBar.getProgress() - 1);
+            MainActivity.drinkBar.setProgress(MainActivity.drinkBar.getProgress() - 2);
+            Log.e("Active",active + "");
+
 
             SetInterval();
         }
-
+        Log.e("Active",active + "");
         count = 0;
         Log.d("SERVICE SAMPLE", "SERVICE SAMPLE: FIM");
 
@@ -70,6 +81,22 @@ public class MyService extends Service implements Runnable, Counter{
     {
         try { Thread.sleep(1000); }
         catch(InterruptedException e) { e.printStackTrace(); }
+    }
+    public static boolean DrinkVerifier()
+    {
+        if(MainActivity.drinkBar.getProgress() <= 15)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static boolean FoodVerifier()
+    {
+        if(MainActivity.foodBar.getProgress() <= 15)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
