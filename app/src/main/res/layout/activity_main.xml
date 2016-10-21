@@ -22,37 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageView"
-        android:id="@+id/ll1">
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Drink Some Water"
-            android:background="#51c696"
-            android:id="@+id/button"
-            android:clickable="true"
-            android:onClick="waterPlease"
-            android:textColor="#036915" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Eat Some Food"
-            android:background="#51c696"
-            android:id="@+id/button2"
-            android:onClick="foodPlease"
-            android:textColor="#036915" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/ll1"
         android:layout_marginTop="10dp"
         android:id="@+id/ll2"             >
@@ -95,6 +64,37 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar2"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll1"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true">
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Drink Some Water"
+            android:background="#51c696"
+            android:id="@+id/button"
+            android:clickable="true"
+            android:onClick="waterPlease"
+            android:textColor="#036915" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Eat Some Food"
+            android:background="#51c696"
+            android:id="@+id/button2"
+            android:onClick="foodPlease"
+            android:textColor="#036915" />
     </LinearLayout>
 
 </RelativeLayout>

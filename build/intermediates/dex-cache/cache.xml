@@ -2,32 +2,58 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Lpaulo\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="24.0.3"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-729f9add981a09152fe370a27c42a751e25ce1b9.jar" />
-    </item>
-    <item
-        jar="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="24.0.3"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-d81f875689a24e83fb79fd2cb48d0040beac6df7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
         revision="24.0.3"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\pre-dexed\debug\classes-e9361de0c5f8b24773a6f05daf69ed2a7f54cf20.jar" />
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.1_75ae4fd5ea2becd446f2a3b36c4b81d0a3e00573\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="6da67d549dcaf9a682f9c5aa39468dd9d8c55e13">
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_eb4924e646fdeff1ce0271e30e4a61b5cb762d62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.1_e6d73b1272d94fb2ab05be57e20d3f695e5f8eb1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.1_edf33a2fe62245e518b3e44fe542164e06a1db1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5fc861bc4e96a29e41d1c856a57cc571154a76d">
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_66a079c14eacad7fd38bb0be8c63426d973f96d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
         revision="24.0.3"
         sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="C:\Users\Lpaulo\Documents\GitHub\PouAndroid\app\build\intermediates\pre-dexed\debug\classes-78b03baac941728b209da9598d1495a6295ccc5b.jar" />
+        <dex dex="C:\Users\luis.silva\Desktop\GitHub\PouAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.1_3cc92295f355ff348c8e8dd70879c67cac12ab62\classes.dex" />
     </item>
 
 </items>

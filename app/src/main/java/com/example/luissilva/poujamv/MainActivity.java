@@ -35,12 +35,14 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         setContentView(R.layout.activity_main);
 
         drinkBar = (ProgressBar) findViewById(R.id.progressBar);
-        foodBar = (ProgressBar) findViewById(R.id.progressBar2);
-        img = (ImageView) findViewById(R.id.imageView);
         drinkBar.setProgress(70);
-        foodBar.setProgress(70);
         drinkBar.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
+
+        foodBar = (ProgressBar) findViewById(R.id.progressBar2);
+        foodBar.setProgress(70);
         foodBar.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+
+        img = (ImageView) findViewById(R.id.imageView);
         img.setImageDrawable(getDrawable(R.drawable.trigerred_esponja));
 
 
@@ -63,26 +65,10 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public void waterPlease(View v)
     {
         drinkBar.setProgress(drinkBar.getProgress() + 10);
-        while(true)
-        {
-            if(MyService.DrinkVerifier())
-            {
-                NotificationGenerator("Drink");
-            }
-            Log.e("Is","verifing drink");
-        }
     }
     public void foodPlease(View v)
     {
         foodBar.setProgress(foodBar.getProgress()+10);
-        while(true)
-        {
-            if(MyService.FoodVerifier())
-            {
-                NotificationGenerator("Food");
-            }
-            Log.e("Is","verifing food");
-        }
     }
 
     @Override
@@ -128,54 +114,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     }
 
 
-    public void NotificationGenerator(String bar)
-    {
-        switch (bar)
-        {
-            case "Drink":
-                NotificationCompat.Builder drinkNot = new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.icone_esponja)
-                        .setContentTitle("Tenho sede")
-                        .setContentText("Me dê água, por favor!");
 
-                Intent resultIntent = new Intent(this, MainActivity.class);
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-                stackBuilder.addParentStack(MainActivity.class);
-                stackBuilder.addNextIntent(resultIntent);
-                PendingIntent resultPendingIntent =
-                        stackBuilder.getPendingIntent(
-                                0,
-                                PendingIntent.FLAG_UPDATE_CURRENT
-                        );
-                drinkNot.setContentIntent(resultPendingIntent);
-                NotificationManager mNotificationManager =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-// mId allows you to update the notification later on.
-                mNotificationManager.notify(0,drinkNot.build());
-
-                break;
-            case "Food":
-                NotificationCompat.Builder foodNot = new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.icone_esponja)
-                        .setContentTitle("Tenho fome")
-                        .setContentText("Me dê comida, por favor!");
-                Intent resultIntent2 = new Intent(this, MainActivity.class);
-                TaskStackBuilder stackBuilder2 = TaskStackBuilder.create(this);
-                stackBuilder2.addParentStack(MainActivity.class);
-                stackBuilder2.addNextIntent(resultIntent2);
-                PendingIntent resultPendingIntent2 =
-                        stackBuilder2.getPendingIntent(
-                                0,
-                                PendingIntent.FLAG_UPDATE_CURRENT
-                        );
-                foodNot.setContentIntent(resultPendingIntent2);
-                NotificationManager fNotificationManager =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-// mId allows you to update the notification later on.
-                fNotificationManager.notify(0,foodNot.build());
-                break;
-        }
-    }
 
 
 }

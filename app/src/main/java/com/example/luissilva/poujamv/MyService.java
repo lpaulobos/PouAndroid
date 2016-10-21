@@ -11,6 +11,7 @@ public class MyService extends Service implements Runnable, Counter{
     protected int count;
     private boolean active;
     private final LocalBinder connection = new LocalBinder();
+    private MySendNotification mySendNotification;
 
     public MyService() {
     }
@@ -28,9 +29,7 @@ public class MyService extends Service implements Runnable, Counter{
         super.onCreate();
 
         Log.e("Count", count+"");
-
-       // if(count ==  && count <= 0)
-        //{}
+        mySendNotification = MySendNotification.getInstance(this);
 
         Log.d("SERVICE SAMPLE", "SERVICE SAMPLE onCreate()");
         active = true;
@@ -68,6 +67,14 @@ public class MyService extends Service implements Runnable, Counter{
             MainActivity.drinkBar.setProgress(MainActivity.drinkBar.getProgress() - 2);
             Log.e("Active",active + "");
 
+            if(MainActivity.foodBar.getProgress() <= 20)
+            {
+                mySendNotification.FoodNotification();
+            }
+            else if(MainActivity.drinkBar.getProgress() <= 20)
+            {
+                mySendNotification.DrinkNotification();
+            }
 
             SetInterval();
         }
